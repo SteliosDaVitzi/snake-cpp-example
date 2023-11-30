@@ -15,39 +15,45 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Snake-cpp.cpp">
+    <ClCompile Include="..\..\classic-snake-cpp-example\Scripts\Snake-cpp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
+    <ClCompile Include="..\..\classic-snake-cpp-example\Scripts\SnakeSegment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Grid.cpp">
+    <ClCompile Include="..\..\classic-snake-cpp-example\Scripts\Cell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Snake.cpp">
+    <ClCompile Include="..\..\classic-snake-cpp-example\Scripts\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Cell.cpp">
+    <ClCompile Include="..\..\classic-snake-cpp-example\Scripts\Grid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SnakeSegment.cpp">
+    <ClCompile Include="..\..\classic-snake-cpp-example\Scripts\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\classic-snake-cpp-example\Scripts\Snake.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="..\..\classic-snake-cpp-example\Scripts\Cell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Grid.h">
+    <ClInclude Include="..\..\classic-snake-cpp-example\Scripts\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Snake.h">
+    <ClInclude Include="..\..\classic-snake-cpp-example\Scripts\Grid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Cell.h">
+    <ClInclude Include="..\..\classic-snake-cpp-example\Scripts\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SnakeSegment.h">
+    <ClInclude Include="..\..\classic-snake-cpp-example\Scripts\Snake.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\classic-snake-cpp-example\Scripts\SnakeSegment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
