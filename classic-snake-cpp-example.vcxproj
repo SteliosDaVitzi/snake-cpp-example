@@ -72,6 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\C++\SDL2-VC\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\C++\SDL2-VC\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -107,11 +108,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <UseFullPaths>false</UseFullPaths>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -131,21 +133,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\classic-snake-cpp-example\Scripts\Cell.cpp" />
-    <ClCompile Include="..\..\classic-snake-cpp-example\Scripts\Game.cpp" />
-    <ClCompile Include="..\..\classic-snake-cpp-example\Scripts\Grid.cpp" />
-    <ClCompile Include="..\..\classic-snake-cpp-example\Scripts\Renderer.cpp" />
-    <ClCompile Include="..\..\classic-snake-cpp-example\Scripts\Snake-cpp.cpp" />
-    <ClCompile Include="..\..\classic-snake-cpp-example\Scripts\Snake.cpp" />
-    <ClCompile Include="..\..\classic-snake-cpp-example\Scripts\SnakeSegment.cpp" />
+    <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Snake-cpp.cpp" />
+    <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="SnakeSegment.cpp" />
+    <ClCompile Include="VisualComponents.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\classic-snake-cpp-example\Scripts\Cell.h" />
-    <ClInclude Include="..\..\classic-snake-cpp-example\Scripts\Game.h" />
-    <ClInclude Include="..\..\classic-snake-cpp-example\Scripts\Grid.h" />
-    <ClInclude Include="..\..\classic-snake-cpp-example\Scripts\Renderer.h" />
-    <ClInclude Include="..\..\classic-snake-cpp-example\Scripts\Snake.h" />
-    <ClInclude Include="..\..\classic-snake-cpp-example\Scripts\SnakeSegment.h" />
+    <ClInclude Include="Cell.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Grid.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Snake.h" />
+    <ClInclude Include="SnakeSegment.h" />
+    <ClInclude Include="VisualComponents.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

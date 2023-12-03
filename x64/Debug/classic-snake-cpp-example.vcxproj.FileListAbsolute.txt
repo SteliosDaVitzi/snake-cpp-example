@@ -1,0 +1,1 @@
+C:\Projects\MyProjects\CPP\classic-snake-cpp-example\x64\Debug\classic-snake-cpp-example.exe

@@ -1,0 +1,3 @@
+﻿  Snake.cpp
+C:\Projects\MyProjects\CPP\classic-snake-cpp-example\Snake.cpp(56,12): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  classic-snake-cpp-example.vcxproj -> C:\Projects\MyProjects\CPP\classic-snake-cpp-example\x64\Debug\classic-snake-cpp-example.exe
