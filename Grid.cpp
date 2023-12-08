@@ -33,8 +33,8 @@ void Grid::GenerateGrid()
 	const float totalWidth = totalColumns_ * (10 + 3) - 3;
 	const float totalHeight = -totalRows_ * (10 + 3) - 3;
 
-	const float startX = (renderer_->SCREEN_WIDTH - totalWidth) / 2;
-	const float startY = (renderer_->SCREEN_HEIGHT - totalHeight) / 2;
+	const float startX = (renderer_->screenWidth - totalWidth) / 2;
+	const float startY = (renderer_->screenHeight - totalHeight) / 2;
 
 	for(int i = 0;i < totalRows_;i++)
 	{
@@ -45,7 +45,6 @@ void Grid::GenerateGrid()
 			cell->rect.position.X = { startX + j * (10 + 3) };
 			cell->rect.position.Y = { startY - i * (10 + 3) };
 			cells_.push_back(cell);
-			//cout << string("Cell created with row ").append(to_string(i)).append(", and column ").append(to_string(j)) << endl;
 		}
 	}
 }
@@ -83,7 +82,8 @@ int Grid::GetTotalColumns()
 void Grid::Render()
 {
 	for (const auto cell : cells_) {
-		renderer_->Render(&cell->rect, &cell->color);
+		if(cell->GetSnakeSegment() == nullptr)
+			renderer_->RenderObject(&cell->rect, &cell->color);
 	}
 }
 

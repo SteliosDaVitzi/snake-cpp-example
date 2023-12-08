@@ -1,5 +1,6 @@
 #include "Snake.h"
 #include <iostream>
+#include <string>
 
 #include "Cell.h"
 #include "Grid.h"
@@ -26,7 +27,7 @@ void Snake::SetupSnake(const int& initialSegments, MoveDirection& initialDirecti
 {
 	const auto initialCell = grid_->GetCenterCell();
 
-	cout << "Initial cell row : " << initialCell->GetRow() << ", and column : " << initialCell->GetColumn() << endl;
+	//cout << "Initial cell row : " << initialCell->GetRow() << ", and column : " << initialCell->GetColumn() << endl;
 
 	ChangeDirection(initialDirection);
 
@@ -55,56 +56,63 @@ void Snake::AddSegment(const int& row, const int& column)
 {
 	int index = snakeSegments_.size() + 1;
 	const auto segment = new SnakeSegment(row, column, renderer_, grid_, index);
-	snakeSegments_.push_back(segment);
+	snakeSegments_.emplace_back(segment);
 
 	grid_->GetCellByCoordinates(row, column)->SetSnakeSegment(segment);
 }
 
 void Snake::Render()
 {
-	for (SnakeSegment* segment : snakeSegments_)
+	for (const auto segment : snakeSegments_)
+	{
 		segment->Render();
+	}
+		
 }
 
 void Snake::Move()
 {
-	cout << "Snake moved." << endl;
+	/*MoveDirection dir = renderer_->Input->GetMoveDirection();
+	ChangeDirection(dir);*/
 
 	for (auto it = snakeSegments_.begin(); it != snakeSegments_.end(); ++it) {
-		auto currentElement = *it;
+
+		const auto currentElement = *it;
 
 		if(it == snakeSegments_.begin())
 		{
-			cout << "Head!" << endl;
 			currentElement->UpdatePosition(true, currentDirection_, nullptr);
 		}
-		else if(next(it) != snakeSegments_.end())
+		else
 		{
-			cout << "Body part!" << endl;
-			auto nextElement = *next(it);
-			currentElement->UpdatePosition(false, currentDirection_, nextElement);
+			const auto prevElement = *prev(it);
+			currentElement->UpdatePosition(false, currentDirection_, prevElement);
 		}
-
-		/*if (next(it) != snakeSegments_.end()) {
-			auto nextElement = *next(it);
-			currentElement->UpdatePosition(false, currentDirection_, nextElement);
-		}
-		else 
-		{
-			currentElement->UpdatePosition(true, currentDirection_, nullptr);
-		}*/
 	}
 }
 
-void Snake::ChangeDirection(MoveDirection newDirection)
+void Snake::ChangeDirection(MoveDirection& newDirection)
 {
-	if (newDirection == currentDirection_ 
-		|| (currentDirection_ == Up && newDirection == Down)
-		|| (currentDirection_ == Down && newDirection == Up)
-		|| (currentDirection_ == Left && newDirection == Right)
-		|| (currentDirection_ == Right && newDirection == Left))
-		return;
+	if (newDirection == currentDirection_)return;
 
-	currentDirection_ = newDirection;
+	switch (newDirection)
+	{
+	case Up:
+		if (currentDirection_ == Down) return;
+		currentDirection_ = Up;
+		break;
+	case Down:
+		if (currentDirection_ == Up) return;
+		currentDirection_ = Down;
+		break;
+	case Left:
+		if (currentDirection_ == Right) return;
+		currentDirection_ = Left;
+		break;
+	case Right:
+		if (currentDirection_ == Left) return;
+		currentDirection_ = Right;
+		break;
+	}
 }
 

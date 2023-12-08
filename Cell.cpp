@@ -22,4 +22,8 @@ int Cell::GetColumn()
 	return column_;
 }
 
+SnakeSegment* Cell::GetSnakeSegment()
+{
+	return snakeSegment_;
+}
 

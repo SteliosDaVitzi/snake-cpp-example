@@ -11,6 +11,7 @@ public:
 	int GetRow();
 	int GetColumn();
 	void SetSnakeSegment(SnakeSegment* segment);
+	SnakeSegment* GetSnakeSegment();
 	Color color;
 	Rect rect;
 private:

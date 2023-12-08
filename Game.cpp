@@ -34,6 +34,7 @@ void Game::ClearGame()
 
 void Game::Run()
 {
+	Render();
 	snake_->Move();
 	Sleep(step_ * 1000);
 }
@@ -42,4 +43,9 @@ void Game::Render()
 {
 	grid_->Render();
 	snake_->Render();
+}
+
+Snake* Game::GetSnake()
+{
+	return snake_;
 }

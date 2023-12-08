@@ -19,7 +19,7 @@ public:
 	Snake(int& initialSegments, MoveDirection& initialDirection, Grid* grid, Renderer* renderer);
 	~Snake();
 	void Move();
-	void ChangeDirection(MoveDirection newDirection);
+	void ChangeDirection(MoveDirection& newDirection);
 	void Render();
 private:
 	Grid* grid_;

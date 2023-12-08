@@ -21,7 +21,18 @@ SnakeSegment::SnakeSegment(int row, int column, Renderer* renderer, Grid* grid, 
     color_ = { 100.0f, 100.0f, 100.0f, 255.0f };
 
     index_ = index;
-    cout << "Segment with index : " << index_ << ", placed to : " << currentRow_ << "," << currentColumn_ << endl;
+    if(index_ == 1)
+        color_ = { 0.0f, 0.0f, 255.0f, 255.0f };
+    else if(index_ == 2)
+        color_ = { 0.0f, 255.0f, 0.0f, 255.0f };
+    else if (index_ == 3)
+        color_ = { 255.0f, 0.0f, 0.0f, 255.0f };
+    else if (index_ == 4)
+        color_ = { 0.0f, 255.0f, 255.0f, 255.0f };
+    else if (index_ == 5)
+        color_ = { 255.0f, 255.0f, 0.0f, 255.0f };
+
+    //cout << "Segment with index : " << index_ << ", placed to : " << currentRow_ << "," << currentColumn_ << endl;
 
     rect_ = grid_->GetCellByCoordinates(currentRow_, currentColumn_)->rect;
 }
@@ -66,7 +77,6 @@ void SnakeSegment::UpdatePosition(bool isHead, MoveDirection moveDirection, Snak
                 currentColumn_ = 0;
             break;
         }
-
         UpdateGridSnakeSegment();
 
         return;
@@ -83,8 +93,6 @@ void SnakeSegment::UpdatePosition(bool isHead, MoveDirection moveDirection, Snak
 
 void SnakeSegment::UpdateGridSnakeSegment()
 {
-    cout << "Segment with index : " << index_ << ", moved to : " << currentRow_ << "," << currentColumn_ << endl;
-
     const auto currentCell = grid_->GetCellByCoordinates(currentRow_, currentColumn_);
     const auto previousCell = grid_->GetCellByCoordinates(previousRow_, previousColumn_);
 
@@ -107,6 +115,6 @@ int SnakeSegment::PreviousColumn()
 
 void SnakeSegment::Render()
 {
-    renderer_->Render(&rect_, &color_);
+    renderer_->RenderObject(&rect_, &color_);
 }
 
