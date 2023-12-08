@@ -1,7 +1,5 @@
 #include "Snake.h"
 #include <iostream>
-#include <string>
-
 #include "Cell.h"
 #include "Grid.h"
 #include "SnakeSegment.h"
@@ -26,8 +24,6 @@ Snake::~Snake()
 void Snake::SetupSnake(const int& initialSegments, MoveDirection& initialDirection)
 {
 	const auto initialCell = grid_->GetCenterCell();
-
-	//cout << "Initial cell row : " << initialCell->GetRow() << ", and column : " << initialCell->GetColumn() << endl;
 
 	ChangeDirection(initialDirection);
 
@@ -72,49 +68,20 @@ void Snake::Render()
 
 void Snake::Move()
 {
-	KeyCode input = renderer_->Input();
-	MoveDirection dir;
-
-	switch (input)
-	{
-		case ArrowUp:
-			dir = Up;
-			break;
-		case ArrowDown:
-			dir = Down;
-			break;
-		case ArrowLeft:
-			dir = Left;
-			break;
-		case ArrowRight:
-			dir = Right;
-			break;
-		default:
-			dir = currentDirection_;
-			break;
-	}
-
-	ChangeDirection(dir);
-
 	for (auto it = snakeSegments_.begin(); it != snakeSegments_.end(); ++it) {
 
 		const auto currentElement = *it;
 
 		if(it == snakeSegments_.begin())
-		{
 			currentElement->UpdatePosition(true, currentDirection_, nullptr);
-		}
 		else
-		{
-			const auto prevElement = *prev(it);
-			currentElement->UpdatePosition(false, currentDirection_, prevElement);
-		}
+			currentElement->UpdatePosition(false, currentDirection_, *prev(it));
 	}
 }
 
 void Snake::ChangeDirection(MoveDirection& newDirection)
 {
-	if (newDirection == currentDirection_)return;
+	if (newDirection == currentDirection_) return;
 
 	switch (newDirection)
 	{

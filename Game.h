@@ -19,6 +19,5 @@ private:
 	int counter_;
 	Grid* grid_;
 	Snake* snake_;
-	void ClearGame();
 	void Render();
 };

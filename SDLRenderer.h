@@ -7,7 +7,7 @@ class SDLRenderer: public Renderer
 {
 public:
 	SDLRenderer(int screen_width, int screen_height);
-	~SDLRenderer();
+	~SDLRenderer() override;
 	int ShowWindow() override;
 	void RenderObject(Rect* rect, Color* color) override;
 	bool Render() override;

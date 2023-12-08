@@ -44,24 +44,15 @@ KeyCode SDLRenderer::Input()
     	if (event.type == SDL_KEYDOWN) {
             switch (event.key.keysym.sym) {
             case SDLK_UP:
-                cout << "up" << endl;
                 return ArrowUp;
-                break;
             case SDLK_DOWN:
-                cout << "down" << endl;
                 return ArrowDown;
-                break;
             case SDLK_LEFT:
-                cout << "left" << endl;
                 return ArrowLeft;
-                break;
             case SDLK_RIGHT:
-                cout << "right" << endl;
                 return ArrowRight;
-                break;
             default:
                 return None;
-                break;
             }
         }
     }

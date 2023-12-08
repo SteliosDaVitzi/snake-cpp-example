@@ -15,8 +15,8 @@ enum KeyCode
 class Renderer
 {
 public:
-	Renderer();
-	virtual ~Renderer();
+	Renderer() = default;
+	virtual ~Renderer() = default;
 	virtual int ShowWindow();
 	virtual void RenderObject(Rect* rect, Color* color);
 	virtual bool Render();

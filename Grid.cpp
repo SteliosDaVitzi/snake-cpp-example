@@ -13,8 +13,6 @@ Grid::Grid(int& rows, int& columns, Renderer* renderer)
 	totalRows_ = rows;
 	totalColumns_ = columns;
 
-	cout << totalRows_ << " " << totalColumns_ << endl;
-
 	GenerateGrid();
 }
 

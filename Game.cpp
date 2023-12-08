@@ -7,8 +7,6 @@
 
 Game::Game(int& rows, int& columns, int& initialSnakeSegments, MoveDirection& initialDirection, Renderer* renderer)
 {
-	ClearGame();
-
     renderer_ = renderer;
 	grid_ = new Grid(rows, columns, renderer);
 	snake_ = new Snake(initialSnakeSegments, initialDirection, grid_, renderer);
@@ -16,16 +14,11 @@ Game::Game(int& rows, int& columns, int& initialSnakeSegments, MoveDirection& in
 
 Game::~Game()
 {
-	ClearGame();
-}
+    delete grid_;
+    delete snake_;
 
-void Game::ClearGame()
-{
-	delete grid_;
-	delete snake_;
-
-	grid_ = nullptr;
-	snake_ = nullptr;
+    grid_ = nullptr;
+    snake_ = nullptr;
 }
 
 void Game::Run()
