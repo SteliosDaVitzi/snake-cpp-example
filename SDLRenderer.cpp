@@ -1,4 +1,3 @@
-#define SDL_MAIN_HANDLED
 #include <SDL.h>
 #include "SDLRenderer.h"
 #include "VisualComponents.h"
@@ -30,9 +29,6 @@ bool SDLRenderer::Render()
             return false;
         }
         else if (event.type == SDL_KEYDOWN) {
-
-            HandleInput(event);
-
             if (event.key.keysym.sym == SDLK_ESCAPE) {
                 return false;
             }
@@ -42,31 +38,34 @@ bool SDLRenderer::Render()
     return true;
 }
 
-void SDLRenderer::HandleInput(const SDL_Event& event)
+KeyCode SDLRenderer::Input()
 {
-    //cout << "Get move direction" << endl;
-
-    switch (event.key.keysym.sym) {
-    case SDLK_UP:
-        cout << "up" << endl;
-        //return Up;
-        break;
-    case SDLK_DOWN:
-        cout << "down" << endl;
-        //return Down;
-        break;
-    case SDLK_LEFT:
-        cout << "left" << endl;
-        //return Left;
-        break;
-    case SDLK_RIGHT:
-        cout << "right" << endl;
-        //return Right;
-        break;
-    default:
-        //return Up;
-        break;
+    while (SDL_PollEvent(&event)) {
+    	if (event.type == SDL_KEYDOWN) {
+            switch (event.key.keysym.sym) {
+            case SDLK_UP:
+                cout << "up" << endl;
+                return ArrowUp;
+                break;
+            case SDLK_DOWN:
+                cout << "down" << endl;
+                return ArrowDown;
+                break;
+            case SDLK_LEFT:
+                cout << "left" << endl;
+                return ArrowLeft;
+                break;
+            case SDLK_RIGHT:
+                cout << "right" << endl;
+                return ArrowRight;
+                break;
+            default:
+                return None;
+                break;
+            }
+        }
     }
+    
 }
 
 

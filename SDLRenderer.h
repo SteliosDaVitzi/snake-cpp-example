@@ -11,7 +11,7 @@ public:
 	int ShowWindow() override;
 	void RenderObject(Rect* rect, Color* color) override;
 	bool Render() override;
-	void HandleInput(const SDL_Event& event) override;
+	KeyCode Input() override;
 private:
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;

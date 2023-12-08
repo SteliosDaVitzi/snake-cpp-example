@@ -21,7 +21,7 @@ SnakeSegment::SnakeSegment(int row, int column, Renderer* renderer, Grid* grid, 
     color_ = { 100.0f, 100.0f, 100.0f, 255.0f };
 
     index_ = index;
-    if(index_ == 1)
+    /*if(index_ == 1)
         color_ = { 0.0f, 0.0f, 255.0f, 255.0f };
     else if(index_ == 2)
         color_ = { 0.0f, 255.0f, 0.0f, 255.0f };
@@ -30,7 +30,7 @@ SnakeSegment::SnakeSegment(int row, int column, Renderer* renderer, Grid* grid, 
     else if (index_ == 4)
         color_ = { 0.0f, 255.0f, 255.0f, 255.0f };
     else if (index_ == 5)
-        color_ = { 255.0f, 255.0f, 0.0f, 255.0f };
+        color_ = { 255.0f, 255.0f, 0.0f, 255.0f };*/
 
     //cout << "Segment with index : " << index_ << ", placed to : " << currentRow_ << "," << currentColumn_ << endl;
 

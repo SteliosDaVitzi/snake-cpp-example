@@ -1,8 +1,16 @@
 #pragma once
-#include <SDL_events.h>
 
 class Color;
 class Rect;
+
+enum KeyCode
+{
+	None,
+	ArrowUp,
+	ArrowDown,
+	ArrowLeft,
+	ArrowRight
+};
 
 class Renderer
 {
@@ -12,7 +20,7 @@ public:
 	virtual int ShowWindow();
 	virtual void RenderObject(Rect* rect, Color* color);
 	virtual bool Render();
-	virtual void HandleInput(const SDL_Event& event);
+	virtual KeyCode Input();
 	int screenWidth;
 	int screenHeight;
 };

@@ -13,10 +13,9 @@ public:
 	Game(int& rows, int& columns, int& initialSnakeSegments, MoveDirection& initialDirection, Renderer* renderer);
 	~Game();
 	void Run();
-	Grid* GetGrid();
-	Snake* GetSnake();
 private:
-	const float step_ = 0.5f;
+	Renderer* renderer_;
+	const long step_ = 200;
 	int counter_;
 	Grid* grid_;
 	Snake* snake_;
