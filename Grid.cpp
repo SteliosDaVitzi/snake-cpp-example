@@ -2,7 +2,6 @@
 #include "Cell.h"
 #include <iostream>
 #include <string>
-
 #include "VisualComponents.h"
 using namespace std;
 
@@ -31,8 +30,8 @@ void Grid::GenerateGrid()
 	const float totalWidth = totalColumns_ * (10 + 3) - 3;
 	const float totalHeight = -totalRows_ * (10 + 3) - 3;
 
-	const float startX = (renderer_->screenWidth - totalWidth) / 2;
-	const float startY = (renderer_->screenHeight - totalHeight) / 2;
+	const float startX = (renderer_->screen_width - totalWidth) / 2;
+	const float startY = (renderer_->screen_height - totalHeight) / 2;
 
 	for(int i = 0;i < totalRows_;i++)
 	{

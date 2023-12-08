@@ -11,14 +11,14 @@ SDL_Event event;
 
 SDLRenderer::SDLRenderer(int screen_width, int screen_height)
 {
-    screenWidth = screen_width;
-    screenHeight = screen_height;
+    screen_width = screen_width;
+    screen_height = screen_height;
 }
 
 SDLRenderer::~SDLRenderer()
 {
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
+	SDL_DestroyRenderer(renderer_);
+	SDL_DestroyWindow(window_);
 	SDL_Quit();
 }
 
@@ -67,14 +67,14 @@ int SDLRenderer::ShowWindow()
         return 1;
     }
 
-    window = SDL_CreateWindow("Classic Snake", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
-    if (!window) {
+    window_ = SDL_CreateWindow("Classic Snake", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screen_width, screen_height, SDL_WINDOW_SHOWN);
+    if (!window_) {
         SDL_Log("Window creation failed: %s", SDL_GetError());
         return 1;
     }
 
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if (!renderer) {
+    renderer_ = SDL_CreateRenderer(window_, -1, SDL_RENDERER_ACCELERATED);
+    if (!renderer_) {
         SDL_Log("Renderer creation failed: %s", SDL_GetError());
         return 1;
     }
@@ -84,10 +84,10 @@ int SDLRenderer::ShowWindow()
 
 void SDLRenderer::RenderObject(Rect* rect, Color* color)
 {
-	SDL_SetRenderDrawColor(renderer, color->r, color->g, color->b, color->a);
+	SDL_SetRenderDrawColor(renderer_, color->r, color->g, color->b, color->a);
 
 	const SDL_Rect sdlRect = { (int)rect->position.X , (int)rect->position.Y , 10, 10 };
 
-	SDL_RenderFillRect(renderer, &sdlRect);
-	SDL_RenderPresent(renderer);
+	SDL_RenderFillRect(renderer_, &sdlRect);
+	SDL_RenderPresent(renderer_);
 }

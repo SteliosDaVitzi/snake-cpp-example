@@ -16,9 +16,9 @@ public:
 	int PreviousRow();
 	int PreviousColumn();
 	void Render();
-	Rect rect_;
-	Color color_;
-	int index_;
+	Rect rect;
+	Color color;
+	int index;
 private:
 	Grid* grid_;
 	Renderer* renderer_;

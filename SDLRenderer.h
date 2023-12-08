@@ -13,6 +13,6 @@ public:
 	bool Render() override;
 	KeyCode Input() override;
 private:
-	SDL_Window* window = nullptr;
-	SDL_Renderer* renderer = nullptr;
+	SDL_Window* window_ = nullptr;
+	SDL_Renderer* renderer_ = nullptr;
 };
