@@ -3,6 +3,7 @@
 #include "Cell.h"
 #include "Grid.h"
 #include "SnakeSegment.h"
+#include "Utils.h"
 using namespace std;
 
 Snake::Snake(int& initialSegments, MoveDirection& initialDirection, Grid* grid, Renderer* renderer)
@@ -73,7 +74,25 @@ void Snake::Move()
 		const auto currentElement = *it;
 
 		if(it == snakeSegments_.begin())
+		{
 			currentElement->UpdatePosition(true, currentDirection_, nullptr);
+			const auto currentCell = grid_->GetCellByCoordinates(currentElement->CurrentRow(), currentElement->CurrentColumn());
+			if(currentCell != nullptr)
+			{
+				if (currentCell->GetConsumable() != nullptr)
+				{
+					currentCell->GetConsumable()->executeConsumableEffect(this);
+					currentCell->SetConsumable(nullptr);
+					grid_->GenerateConsumableAtRandomCell();
+				}
+
+				if(currentCell->GetSnakeSegment() != nullptr)
+				{
+					if (onSnakeEatsItselfCallback_)
+						onSnakeEatsItselfCallback_();
+				}
+			}
+		}
 		else
 			currentElement->UpdatePosition(false, currentDirection_, *prev(it));
 	}
@@ -104,3 +123,22 @@ void Snake::ChangeDirection(MoveDirection& newDirection)
 	}
 }
 
+void Snake::increaseSize()
+{
+	Utils::Debug("increased size!");
+
+	auto it = begin(snakeSegments_);
+	advance(it, snakeSegments_.size()-1);
+
+	if (it == snakeSegments_.end())
+		return;
+
+	SnakeSegment* lastSegment = *it;
+
+	AddSegment(lastSegment->PreviousRow(), lastSegment->PreviousColumn());
+}
+
+void Snake::increaseSpeed()
+{
+	Utils::Debug("increased speed!!");
+}

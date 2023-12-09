@@ -4,11 +4,13 @@
 #include <thread>
 #include <chrono>
 #include "Renderer.h"
+using namespace this_thread;
+using namespace chrono;
 
-Game::Game(int& rows, int& columns, int& initialSnakeSegments, MoveDirection& initialDirection, Renderer* renderer)
+Game::Game(int& rows, int& columns, int& initialSnakeSegments, MoveDirection& initialDirection, Renderer* renderer, IConsumablesGenerator* consumablesGenerator)
 {
     renderer_ = renderer;
-	grid_ = new Grid(rows, columns, renderer);
+	grid_ = new Grid(rows, columns, renderer, consumablesGenerator);
 	snake_ = new Snake(initialSnakeSegments, initialDirection, grid_, renderer);
 }
 
@@ -16,16 +18,13 @@ Game::~Game()
 {
     delete grid_;
     delete snake_;
-
-    grid_ = nullptr;
-    snake_ = nullptr;
 }
 
 void Game::Run()
 {
 	Render();
 	
-    this_thread::sleep_for(chrono::milliseconds(step_));
+    sleep_for(milliseconds(step_));
 
     KeyCode input = renderer_->Input();
     MoveDirection dir;

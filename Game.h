@@ -1,4 +1,5 @@
 #pragma once
+#include "IConsumablesGenerator.h"
 #include "Snake.h"
 
 enum GameState
@@ -7,10 +8,12 @@ enum GameState
 	InProgress
 };
 
+//typedef void(*OnSnakeEatsItself);
+
 class Game
 {
 public:
-	Game(int& rows, int& columns, int& initialSnakeSegments, MoveDirection& initialDirection, Renderer* renderer);
+	Game(int& rows, int& columns, int& initialSnakeSegments, MoveDirection& initialDirection, Renderer* renderer, IConsumablesGenerator* consumablesGenerator);
 	~Game();
 	void Run();
 private:

@@ -9,7 +9,8 @@ enum KeyCode
 	ArrowUp,
 	ArrowDown,
 	ArrowLeft,
-	ArrowRight
+	ArrowRight,
+	Escape
 };
 
 class Renderer

@@ -3,16 +3,19 @@
 #include <iostream>
 #include <string>
 #include "VisualComponents.h"
+#include "Utils.h"
+#include <random>
 using namespace std;
 
-Grid::Grid(int& rows, int& columns, Renderer* renderer)
+Grid::Grid(int& rows, int& columns, Renderer* renderer, IConsumablesGenerator* consumablesGenerator)
 {
 	renderer_ = renderer;
-
+	consumablesGenerator_ = consumablesGenerator;
 	totalRows_ = rows;
 	totalColumns_ = columns;
 
 	GenerateGrid();
+	GenerateConsumableAtRandomCell();
 }
 
 Grid::~Grid()
@@ -44,6 +47,27 @@ void Grid::GenerateGrid()
 			cells_.push_back(cell);
 		}
 	}
+}
+
+void Grid::GenerateConsumableAtRandomCell()
+{
+	const int randomCellIndex = Utils::getRandomInteger(0, totalRows_ * totalColumns_);
+	auto it = cells_.begin();
+	advance(it, randomCellIndex);
+
+	Cell* targetCell = *it;
+
+	if(targetCell->GetSnakeSegment() != nullptr)
+	{
+		GenerateConsumableAtRandomCell();
+		return;
+	}
+
+	IConsumable* consumable = consumablesGenerator_->getConsumable();
+	consumable->rect = targetCell->rect;
+	consumable->color = { 0.0f, 255.0f, 0.0f, 255.0f };
+
+	targetCell->SetConsumable(consumable);
 }
 
 Cell* Grid::GetCenterCell()
@@ -79,8 +103,10 @@ int Grid::GetTotalColumns()
 void Grid::Render()
 {
 	for (const auto cell : cells_) {
-		if(cell->GetSnakeSegment() == nullptr)
+		if(cell->GetSnakeSegment() == nullptr && cell->GetConsumable() == nullptr)
 			renderer_->RenderObject(&cell->rect, &cell->color);
+		else if(cell->GetConsumable() != nullptr && cell->GetSnakeSegment() == nullptr)
+			renderer_->RenderObject(&cell->GetConsumable()->rect, &cell->GetConsumable()->color);
 	}
 }
 

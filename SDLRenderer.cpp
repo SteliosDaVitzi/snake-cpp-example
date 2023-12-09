@@ -9,10 +9,10 @@ class Color;
 
 SDL_Event event;
 
-SDLRenderer::SDLRenderer(int screen_width, int screen_height)
+SDLRenderer::SDLRenderer(int screenWidth, int screenHeight)
 {
-    screen_width = screen_width;
-    screen_height = screen_height;
+    screen_width = screenWidth;
+    screen_height = screenHeight;
 }
 
 SDLRenderer::~SDLRenderer()
@@ -30,6 +30,7 @@ bool SDLRenderer::Render()
         }
         else if (event.type == SDL_KEYDOWN) {
             if (event.key.keysym.sym == SDLK_ESCAPE) {
+                cout << "Escape!!!" << endl;
                 return false;
             }
         }
@@ -56,7 +57,6 @@ KeyCode SDLRenderer::Input()
             }
         }
     }
-    
 }
 
 

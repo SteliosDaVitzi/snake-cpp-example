@@ -1,16 +1,24 @@
 #include "Game.h"
+#include "IConsumablesGenerator.h"
+#include "IncreaseSpeedConsumable.h"
+#include "InscreaseSizeConsumable.h"
+#include "RandomConsumablesGenerator.h"
 #include "SDLRenderer.h"
-class Cell;
 
 int main()
 {
     int rows = 25;
     int columns = 25;
     int initialSnakeSegments = 5;
-    MoveDirection moveDirection = Up;
+    MoveDirection initialDirection = Up;
 
     const auto renderer = new SDLRenderer(640,480);
-    const auto game = new Game(rows, columns, initialSnakeSegments, moveDirection, renderer);
+
+    const auto consumablesGenerator = new RandomConsumablesGenerator();
+    consumablesGenerator->consumables.push_back(new IncreaseSizeConsumable());
+    consumablesGenerator->consumables.push_back(new IncreaseSpeedConsumable());
+
+    const auto game = new Game(rows, columns, initialSnakeSegments, initialDirection, renderer, consumablesGenerator);
 
     renderer->ShowWindow();
 
@@ -18,10 +26,12 @@ int main()
 
     while (running)
     {
-        running = renderer->Render();
+		running = renderer->Render();
+
         game->Run();
     }
 
+    delete consumablesGenerator;
     delete game;
     delete renderer;
 

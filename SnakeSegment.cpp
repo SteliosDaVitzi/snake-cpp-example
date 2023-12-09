@@ -102,6 +102,15 @@ void SnakeSegment::UpdateGridSnakeSegment()
     rect = currentCell->rect;
 }
 
+int SnakeSegment::CurrentRow()
+{
+    return currentRow_;
+}
+
+int SnakeSegment::CurrentColumn()
+{
+    return currentColumn_;
+}
 
 int SnakeSegment::PreviousRow()
 {

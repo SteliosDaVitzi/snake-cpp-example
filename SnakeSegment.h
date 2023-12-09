@@ -15,6 +15,8 @@ public:
 	void UpdatePosition(bool isHead, MoveDirection moveDirection, SnakeSegment* nextSegment);
 	int PreviousRow();
 	int PreviousColumn();
+	int CurrentRow();
+	int CurrentColumn();
 	void Render();
 	Rect rect;
 	Color color;

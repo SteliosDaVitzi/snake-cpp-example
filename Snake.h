@@ -1,5 +1,7 @@
 #pragma once
 #include <list>
+#include "ISnakeEffects.h"
+#include "Game.h";
 class SnakeSegment;
 class Renderer;
 class Grid;
@@ -13,14 +15,18 @@ enum MoveDirection
 	Right
 };
 
-class Snake
+class Snake: public ISnakeEffects
 {
+	
+
 public:
 	Snake(int& initialSegments, MoveDirection& initialDirection, Grid* grid, Renderer* renderer);
 	~Snake();
 	void Move();
 	void ChangeDirection(MoveDirection& newDirection);
 	void Render();
+	void increaseSize() override;
+	void increaseSpeed() override;
 private:
 	Grid* grid_;
 	Renderer* renderer_;
