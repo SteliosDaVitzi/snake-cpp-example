@@ -14,10 +14,10 @@ public:
 	Game(int& rows, int& columns, int& initialSnakeSegments, MoveDirection& initialDirection, Renderer* renderer, IConsumablesGenerator* consumablesGenerator, OnSnakeEatsItself onSnakeEatsItself);
 	~Game();
 	void Run();
+	void SetStep(float step);
 private:
 	Renderer* renderer_;
-	const long step_ = 200;
-	int counter_;
+	long step_ = 100;
 	Grid* grid_;
 	Snake* snake_;
 	void Render();

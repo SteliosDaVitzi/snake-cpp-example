@@ -6,7 +6,7 @@
 #include "Utils.h"
 using namespace std;
 
-Snake::Snake(int& initialSegments, MoveDirection& initialDirection, Grid* grid, Renderer* renderer, OnSnakeEatsItself onSnakeEatsItself)
+Snake::Snake(int& initialSegments, MoveDirection& initialDirection, Grid* grid, long &step, Renderer* renderer, OnSnakeEatsItself onSnakeEatsItself) : step_(step)
 {
 	grid_ = grid;
 	renderer_ = renderer;
@@ -95,20 +95,15 @@ void Snake::Move()
 		}
 		else
 			currentElement->UpdatePosition(false, currentDirection_, *prev(it));
-
-		//Utils::Debug("snake segment exists : ", currentCell->GetSnakeSegment() != nullptr, " , is it head : ", currentCell->GetSnakeSegment() == currentElement);
-
-		/*if(!headElement || currentElement == headElement ) return;
-
-		if (currentElement->CurrentColumn() == headElement->CurrentColumn() && currentElement->CurrentRow() == headElement->CurrentRow())
-		{
-
-			Utils::Debug("Seems we ate ourselves");
-
-			if (onSnakeEatsItself_)
-				onSnakeEatsItself_();
-		}*/
 	}
+
+	if (!headElement) return;
+
+	const auto currentCell = grid_->GetCellByCoordinates(headElement->CurrentRow(), headElement->CurrentColumn());
+
+	if (currentCell->GetSnakeSegment() && currentCell->GetSnakeSegment() != headElement)
+		if (onSnakeEatsItself_)
+			onSnakeEatsItself_();
 }
 
 void Snake::ChangeDirection(MoveDirection& newDirection)
@@ -154,4 +149,5 @@ void Snake::increaseSize()
 void Snake::increaseSpeed()
 {
 	Utils::Debug("increased speed!!");
+	step_ -= 2;
 }

@@ -11,7 +11,7 @@ Game::Game(int& rows, int& columns, int& initialSnakeSegments, MoveDirection& in
 {
     renderer_ = renderer;
 	grid_ = new Grid(rows, columns, renderer, consumablesGenerator);
-	snake_ = new Snake(initialSnakeSegments, initialDirection, grid_, renderer, onSnakeEatsItself);
+	snake_ = new Snake(initialSnakeSegments, initialDirection, grid_, step_,  renderer, onSnakeEatsItself);
 }
 
 Game::~Game()

@@ -14,6 +14,8 @@ void NewGame();
 
 int main()
 {
+    renderer = new SDLRenderer(640, 480);
+
     NewGame();
 
     renderer->ShowWindow();
@@ -27,6 +29,8 @@ int main()
         game->Run();
     }
 
+    Utils::Debug("End program");
+
     delete consumablesGenerator;
     delete game;
     delete renderer;
@@ -36,13 +40,11 @@ int main()
 
 void NewGame()
 {
-    /*delete consumablesGenerator;
-    delete game;
-    delete renderer;
+    delete consumablesGenerator;
+	delete game;
 
     game = nullptr;
-    renderer = nullptr;
-    consumablesGenerator = nullptr;*/
+    consumablesGenerator = nullptr;
 
     Utils::Debug("Game began!");
 
@@ -50,8 +52,6 @@ void NewGame()
     int columns = 25;
     int initialSnakeSegments = 5;
     MoveDirection initialDirection = Up;
-
-    renderer = new SDLRenderer(640, 480);
 
     consumablesGenerator = new RandomConsumablesGenerator();
     consumablesGenerator->consumables.push_back(new IncreaseSizeConsumable());
