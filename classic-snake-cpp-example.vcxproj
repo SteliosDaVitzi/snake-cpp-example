@@ -136,6 +136,9 @@
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="IncreaseSizeConsumable.cpp" />
+    <ClCompile Include="IncreaseSpeedConsumable.cpp" />
+    <ClCompile Include="RandomConsumablesGenerator.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SDLRenderer.cpp" />
     <ClCompile Include="Snake-cpp.cpp" />
@@ -147,10 +150,17 @@
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="IConsumable.h" />
+    <ClInclude Include="IConsumablesGenerator.h" />
+    <ClInclude Include="IncreaseSpeedConsumable.h" />
+    <ClInclude Include="InscreaseSizeConsumable.h" />
+    <ClInclude Include="ISnakeEffects.h" />
+    <ClInclude Include="RandomConsumablesGenerator.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SDLRenderer.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="SnakeSegment.h" />
+    <ClInclude Include="Utils.h" />
     <ClInclude Include="VisualComponents.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

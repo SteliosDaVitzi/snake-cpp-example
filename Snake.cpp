@@ -6,10 +6,11 @@
 #include "Utils.h"
 using namespace std;
 
-Snake::Snake(int& initialSegments, MoveDirection& initialDirection, Grid* grid, Renderer* renderer)
+Snake::Snake(int& initialSegments, MoveDirection& initialDirection, Grid* grid, Renderer* renderer, OnSnakeEatsItself onSnakeEatsItself)
 {
 	grid_ = grid;
 	renderer_ = renderer;
+	onSnakeEatsItself_ = onSnakeEatsItself;
 	SetupSnake(initialSegments, initialDirection);
 }
 
@@ -69,32 +70,44 @@ void Snake::Render()
 
 void Snake::Move()
 {
+	SnakeSegment* headElement = nullptr;
+
 	for (auto it = snakeSegments_.begin(); it != snakeSegments_.end(); ++it) {
 
 		const auto currentElement = *it;
 
 		if(it == snakeSegments_.begin())
 		{
+			headElement = *it;
+
 			currentElement->UpdatePosition(true, currentDirection_, nullptr);
 			const auto currentCell = grid_->GetCellByCoordinates(currentElement->CurrentRow(), currentElement->CurrentColumn());
 			if(currentCell != nullptr)
 			{
 				if (currentCell->GetConsumable() != nullptr)
 				{
+					Utils::Debug("Ate food!");
 					currentCell->GetConsumable()->executeConsumableEffect(this);
 					currentCell->SetConsumable(nullptr);
 					grid_->GenerateConsumableAtRandomCell();
-				}
-
-				if(currentCell->GetSnakeSegment() != nullptr)
-				{
-					if (onSnakeEatsItselfCallback_)
-						onSnakeEatsItselfCallback_();
 				}
 			}
 		}
 		else
 			currentElement->UpdatePosition(false, currentDirection_, *prev(it));
+
+		//Utils::Debug("snake segment exists : ", currentCell->GetSnakeSegment() != nullptr, " , is it head : ", currentCell->GetSnakeSegment() == currentElement);
+
+		/*if(!headElement || currentElement == headElement ) return;
+
+		if (currentElement->CurrentColumn() == headElement->CurrentColumn() && currentElement->CurrentRow() == headElement->CurrentRow())
+		{
+
+			Utils::Debug("Seems we ate ourselves");
+
+			if (onSnakeEatsItself_)
+				onSnakeEatsItself_();
+		}*/
 	}
 }
 

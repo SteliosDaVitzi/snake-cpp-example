@@ -8,12 +8,10 @@ enum GameState
 	InProgress
 };
 
-//typedef void(*OnSnakeEatsItself);
-
 class Game
 {
 public:
-	Game(int& rows, int& columns, int& initialSnakeSegments, MoveDirection& initialDirection, Renderer* renderer, IConsumablesGenerator* consumablesGenerator);
+	Game(int& rows, int& columns, int& initialSnakeSegments, MoveDirection& initialDirection, Renderer* renderer, IConsumablesGenerator* consumablesGenerator, OnSnakeEatsItself onSnakeEatsItself);
 	~Game();
 	void Run();
 private:

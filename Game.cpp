@@ -7,11 +7,11 @@
 using namespace this_thread;
 using namespace chrono;
 
-Game::Game(int& rows, int& columns, int& initialSnakeSegments, MoveDirection& initialDirection, Renderer* renderer, IConsumablesGenerator* consumablesGenerator)
+Game::Game(int& rows, int& columns, int& initialSnakeSegments, MoveDirection& initialDirection, Renderer* renderer, IConsumablesGenerator* consumablesGenerator, OnSnakeEatsItself onSnakeEatsItself)
 {
     renderer_ = renderer;
 	grid_ = new Grid(rows, columns, renderer, consumablesGenerator);
-	snake_ = new Snake(initialSnakeSegments, initialDirection, grid_, renderer);
+	snake_ = new Snake(initialSnakeSegments, initialDirection, grid_, renderer, onSnakeEatsItself);
 }
 
 Game::~Game()
