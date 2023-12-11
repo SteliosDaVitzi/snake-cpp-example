@@ -6,11 +6,12 @@
 #include "Utils.h"
 using namespace std;
 
-Snake::Snake(int& initialSegments, MoveDirection& initialDirection, Grid* grid, long &step, Renderer* renderer, OnSnakeEatsItself onSnakeEatsItself) : step_(step)
+Snake::Snake(int& initialSegments, MoveDirection& initialDirection, Grid* grid, long* step, Renderer* renderer, OnSnakeEatsItself onSnakeEatsItself)
 {
 	grid_ = grid;
 	renderer_ = renderer;
 	onSnakeEatsItself_ = onSnakeEatsItself;
+	step_ = step;
 	SetupSnake(initialSegments, initialDirection);
 }
 
@@ -52,7 +53,7 @@ void Snake::SetupSnake(const int& initialSegments, MoveDirection& initialDirecti
 
 void Snake::AddSegment(const int& row, const int& column)
 {
-	int index = snakeSegments_.size() + 1;
+	const int index = static_cast<int>(snakeSegments_.size()) + 1;
 	const auto segment = new SnakeSegment(row, column, renderer_, grid_, index);
 	snakeSegments_.emplace_back(segment);
 
@@ -149,5 +150,5 @@ void Snake::increaseSize()
 void Snake::increaseSpeed()
 {
 	Utils::Debug("increased speed!!");
-	step_ -= 2;
+	(*step_) -= 2;
 }

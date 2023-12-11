@@ -12,7 +12,7 @@ public:
 		random_device rd;
 		mt19937 gen(rd());
 
-		uniform_int_distribution<size_t> dist(min, max);
+		uniform_int_distribution<int> dist(min, max);
 		return dist(gen);
 	}
 
@@ -22,7 +22,7 @@ public:
 			throw out_of_range("The list is empty.");
 		}
 
-		int randomIndex = getRandomInteger(0, myList.size() - 1);
+		int randomIndex = getRandomInteger(0, static_cast<int>(myList.size()) - 1);
 
 		auto it = begin(myList);
 		advance(it, randomIndex);

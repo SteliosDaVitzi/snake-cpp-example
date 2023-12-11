@@ -57,6 +57,8 @@ KeyCode SDLRenderer::Input()
             }
         }
     }
+
+    return None;
 }
 
 

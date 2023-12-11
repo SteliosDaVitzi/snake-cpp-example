@@ -22,6 +22,6 @@ public:
 	virtual void RenderObject(Rect* rect, Color* color);
 	virtual bool Render();
 	virtual KeyCode Input();
-	int screen_width;
-	int screen_height;
+	int screen_width = 100;
+	int screen_height = 100;
 };

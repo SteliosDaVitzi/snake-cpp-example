@@ -11,7 +11,6 @@ class SnakeSegment
 {
 public:
 	SnakeSegment(int row, int column, Renderer* renderer, Grid* grid, int index);
-	~SnakeSegment();
 	void UpdatePosition(bool isHead, MoveDirection moveDirection, SnakeSegment* nextSegment);
 	int PreviousRow();
 	int PreviousColumn();
@@ -20,7 +19,7 @@ public:
 	void Render();
 	Rect rect;
 	Color color;
-	int index;
+	int index = 0;
 private:
 	Grid* grid_;
 	Renderer* renderer_;

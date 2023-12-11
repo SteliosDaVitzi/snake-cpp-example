@@ -4,6 +4,7 @@
 #include <thread>
 #include <chrono>
 #include "Renderer.h"
+#include "Utils.h"
 using namespace this_thread;
 using namespace chrono;
 
@@ -11,7 +12,7 @@ Game::Game(int& rows, int& columns, int& initialSnakeSegments, MoveDirection& in
 {
     renderer_ = renderer;
 	grid_ = new Grid(rows, columns, renderer, consumablesGenerator);
-	snake_ = new Snake(initialSnakeSegments, initialDirection, grid_, step_,  renderer, onSnakeEatsItself);
+	snake_ = new Snake(initialSnakeSegments, initialDirection, grid_, &step_,  renderer, onSnakeEatsItself);
 }
 
 Game::~Game()
@@ -23,7 +24,9 @@ Game::~Game()
 void Game::Run()
 {
 	Render();
-	
+
+    Utils::Debug("Step : ", step_);
+
     sleep_for(milliseconds(step_));
 
     KeyCode input = renderer_->Input();

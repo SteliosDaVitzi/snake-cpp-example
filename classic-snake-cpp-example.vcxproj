@@ -144,7 +144,6 @@
     <ClCompile Include="Snake-cpp.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="SnakeSegment.cpp" />
-    <ClCompile Include="VisualComponents.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h" />

@@ -1,10 +1,6 @@
 #include "Cell.h"
 
-Cell::Cell(const int row, const int column)
-{
-	row_ = row;
-	column_ = column;
-}
+Cell::Cell(const int row, const int column):row_(row), column_(column), color({}), rect({}){}
 
 SnakeSegment* Cell::GetSnakeSegment()
 {

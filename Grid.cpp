@@ -30,11 +30,11 @@ Grid::~Grid()
 
 void Grid::GenerateGrid()
 {
-	const float totalWidth = totalColumns_ * (10 + 3) - 3;
-	const float totalHeight = -totalRows_ * (10 + 3) - 3;
+	const float totalWidth = totalColumns_ * (10.0f + 3.0f) - 3.0f;
+	const float totalHeight = -totalRows_ * (10.0f + 3.0f) - 3.0f;
 
-	const float startX = (renderer_->screen_width - totalWidth) / 2;
-	const float startY = (renderer_->screen_height - totalHeight) / 2;
+	const float startX = (renderer_->screen_width - totalWidth) / 2.0f;
+	const float startY = (renderer_->screen_height - totalHeight) / 2.0f;
 
 	for(int i = 0;i < totalRows_;i++)
 	{

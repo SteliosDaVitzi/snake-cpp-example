@@ -25,7 +25,6 @@ int main()
     while (running)
     {
 		running = renderer->Render();
-
         game->Run();
     }
 

@@ -20,26 +20,7 @@ SnakeSegment::SnakeSegment(int row, int column, Renderer* renderer, Grid* grid, 
 
     color = { 100.0f, 100.0f, 100.0f, 255.0f };
 
-    index = index;
-    /*if(index == 1)
-        color = { 0.0f, 0.0f, 255.0f, 255.0f };
-    else if(index == 2)
-        color = { 0.0f, 255.0f, 0.0f, 255.0f };
-    else if (index == 3)
-        color = { 255.0f, 0.0f, 0.0f, 255.0f };
-    else if (index == 4)
-        color = { 0.0f, 255.0f, 255.0f, 255.0f };
-    else if (index == 5)
-        color = { 255.0f, 255.0f, 0.0f, 255.0f };*/
-
-    //cout << "Segment with index : " << index << ", placed to : " << currentRow_ << "," << currentColumn_ << endl;
-
     rect = grid_->GetCellByCoordinates(currentRow_, currentColumn_)->rect;
-}
-
-SnakeSegment::~SnakeSegment()
-{
-
 }
 
 
